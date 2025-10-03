@@ -5,8 +5,12 @@ class Todo {
     };
 
     _setEventListeners() {
-        this._todoCheckboxEl.addEvenListener("change", () => {
-            console.log("clicked");
+        this._todoDeleteBtn.addEventListener("click", () => {
+        this._todoElement.remove();
+    });
+
+        this._todoCheckboxEl.addEventListener("change", () => {
+            this._data.completed = !this._data.completed;
         });
     };
 
@@ -19,15 +23,15 @@ class Todo {
     };
 
     getView() {
- this._todoElement = this._templateElement.content
- .querySelector(".todo")
+    this._todoElement = this._templateElement.content
+    .querySelector(".todo")
     .cloneNode(true);
 
   const todoNameEl = this._todoElement.querySelector(".todo__name");
   const todoDate = this._todoElement.querySelector(".todo__date");
-  const todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
+  this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
   
-  todoNameEl.textcontent = this._data.name;
+  todoNameEl.textContent = this._data.name;
 
   this._generateCheckBoxEl();
   this._setEventListeners();
