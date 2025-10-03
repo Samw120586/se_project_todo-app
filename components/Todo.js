@@ -2,7 +2,7 @@ class Todo {
     constructor(data, selector) {
         this._data = data;
         this._templateElement = document.querySelector(selector);
-    };
+    }
 
     _setEventListeners() {
         this._todoDeleteBtn.addEventListener("click", () => {
@@ -28,13 +28,15 @@ class Todo {
     .querySelector(".todo")
     .cloneNode(true);
 
-    this._dueDate = new Date(this._data.date);
-  if (!isNaN(this._dueDate)) {
-    this._todoDate.textContent = `Due: ${this._dueDate.toLocaleString("en-US", {
+    this._todoDate = new Date(this._data.date);
+  if (!isNaN(dueDate)) {
+    todoDate.textContent = `Due: ${dueDate.toLocaleString("en-US", {
       year: "numeric",
       month: "short",
       day: "numeric",
     })}`;
+  }
+
 
   this._todoNameEl = this._todoElement.querySelector(".todo__name");
   this._todoDate = this._todoElement.querySelector(".todo__date");
