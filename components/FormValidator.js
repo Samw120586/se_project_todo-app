@@ -9,15 +9,27 @@ class FormValidator {
     this._formEl = formEl;
     }
 
+    _showInputError() {
+    this.inputElement.classList.add(this._inputErrorClass);
+    this.errorElement.textContent = errorMessage;
+    this.errorElement.classList.add(this._errorClass);
+    }
+
+    _hideInputError() {
+      this.inputElement.classList.remove(this_inputErrorClass);
+      this.errorElement.classList.remove(this._errorClass);
+      this.errorElement.textContent = "";
+    }
+
     _checkInputValidity(inputElement) {
         if (!inputElement.validity.valid) {
-    showInputError(
+    _showInputError(
       this._formEl,
-      inputElement,
-      inputElement.validationMessage,
+      this.inputElement,
+      this.inputElement.validationMessage,
     );
   } else {
-    hideInputError(inputElement);
+    _hideInputError(inputElement);
   }
     }
 

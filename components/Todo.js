@@ -29,13 +29,13 @@ class Todo {
     .cloneNode(true);
 
   this._todoNameEl = this._todoElement.querySelector(".todo__name");
-  this._todoDate = this._todoElement.querySelector(".todo__date");
+  this._todoDateEl = this._todoElement.querySelector(".todo__date");
   this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
   this._todoNameEl.textContent = this._data.name;
   
-  this._todoDate = new Date(this._data.date);
-  if (!isNaN(this._todoDate)) {
-    this._todoDate.textContent = `Due: ${this._todoDate.toLocaleString("en-US", {
+  this._todoDateEl = new Date(this._duedate);
+  if (!isNaN(this._todoDateEl)) {
+    this._todoDateEl.textContent = `Due: ${this._todoDate.toLocaleString("en-US", {
       year: "numeric",
       month: "short",
       day: "numeric",
