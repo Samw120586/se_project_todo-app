@@ -21,6 +21,12 @@ class FormValidator {
       this.errorElement.textContent = "";
     }
 
+    _resetValidation = (this._formEl, inputList) => {
+    inputList.forEach((input) => {
+    _hideInputError(this._formEl, input)
+  });
+};
+
     _checkInputValidity(inputElement) {
         if (!inputElement.validity.valid) {
     _showInputError(
@@ -35,18 +41,18 @@ class FormValidator {
 
     _toggleButtonState() {
         if (hasInvalidInput(inputList)) {
-     buttonElement.classList.add(this._inactiveButtonClass);
-     buttonElement.disabled = true;
+     this._buttonElement.classList.add(this._inactiveButtonClass);
+     this._buttonElement.disabled = true;
      } else {
-     buttonElement.classList.remove(this.inactiveButtonClass);
-    buttonElement.disabled = false;
+     this._buttonElement.classList.remove(this.inactiveButtonClass);
+    this._buttonElement.disabled = false;
   }
 }
     _setEventListeners() {
     this._inputList = Array.from(
     this._formEl.querySelectorAll(this.inputSelector),
   );
-    const buttonElement = this._formEl.querySelector(
+    this._buttonElement = this._formEl.querySelector(
     this._submitButtonSelector,
   );
 
