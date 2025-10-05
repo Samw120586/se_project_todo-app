@@ -21,9 +21,9 @@ class FormValidator {
       this.errorElement.textContent = "";
     }
 
-    _resetValidation = (this._formEl, inputList) => {
+    _resetValidation = (inputList) => {
     inputList.forEach((input) => {
-    _hideInputError(this._formEl, input)
+    _hideInputError(input)
   });
 };
 
