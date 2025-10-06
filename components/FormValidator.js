@@ -10,22 +10,16 @@ class FormValidator {
     }
 
     _showInputError() {
-    this.inputElement.classList.add(this._inputErrorClass);
-    this.errorElement.textContent = errorMessage;
-    this.errorElement.classList.add(this._errorClass);
+    this._inputElement.classList.add(this._inputErrorClass);
+    this._errorElement.textContent = errorMessage;
+    this._errorElement.classList.add(this._errorClass);
     }
 
     _hideInputError() {
-      this.inputElement.classList.remove(this_inputErrorClass);
-      this.errorElement.classList.remove(this._errorClass);
-      this.errorElement.textContent = "";
+      this._inputElement.classList.remove(this._inputErrorClass);
+      this._errorElement.classList.remove(this._errorClass);
+      this._errorElement.textContent = "";
     }
-
-    _resetValidation = (inputList) => {
-    inputList.forEach((input) => {
-    _hideInputError(input)
-  });
-};
 
     _checkInputValidity(inputElement) {
         if (!inputElement.validity.valid) {
@@ -53,7 +47,7 @@ class FormValidator {
     this._formEl.querySelectorAll(this.inputSelector),
   );
     this._buttonElement = this._formEl.querySelector(
-    this._submitButtonSelector,
+    this._submitButtonSelector
   );
 
     this._inputList.forEach((inputElement) => {
