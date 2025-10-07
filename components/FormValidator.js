@@ -31,8 +31,8 @@ class FormValidator {
   } else {
     this._hideInputError(inputElement);
   }
-  this._hasInvalidInput();
     }
+    
 
 
     _toggleButtonState() {
@@ -43,7 +43,7 @@ class FormValidator {
      this._buttonElement.classList.remove(this._inactiveButtonClass);
     this._buttonElement.disabled = false;
   }
-  
+  this._hasInvalidInput();
   }
     _setEventListeners() {
     this._inputList = Array.from(
