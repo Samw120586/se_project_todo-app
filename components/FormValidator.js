@@ -27,7 +27,7 @@ class FormValidator {
 
     _checkInputValidity(inputElement) {
         if (!inputElement.validity.valid) {
-    _showInputError(inputElement, inputElement.validationMessage);
+    this._showInputError(inputElement, inputElement.validationMessage);
   } else {
     _hideInputError(inputElement);
   }
@@ -42,7 +42,7 @@ class FormValidator {
     this._buttonElement.disabled = false;
   }
   
-}
+  }
     _setEventListeners() {
     this._inputList = Array.from(
     this._formEl.querySelectorAll(this.inputSelector),
