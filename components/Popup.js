@@ -5,19 +5,19 @@ class Popup {
     }
 
     _handleEscapeClose(evt) {
-        if (evt.key === "Escape") {
+        if (evt.key === 'Escape') {
             this.close();
         }
     }
 
     open() {
         this._popupElement.classList.add("popup_visible");
-        this._popupElement.addEventListener("keyup", this._handleEscapeClose);
+        document.addEventListener("keyup", this._handleEscapeClose);
     }
 
     close() {
         this._popupElement.classList.remove("popup_visible");
-        this._popupElement.removeEventListener("keyup", this._handleEscapeClose);
+        document.removeEventListener("keyup", this._handleEscapeClose);
     }
 
     setEventListeners() {
