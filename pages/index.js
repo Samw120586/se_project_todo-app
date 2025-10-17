@@ -13,7 +13,22 @@ const todosList = document.querySelector(".todos__list");
 
 const addTodoPopup = new PopupWithForm({ 
   popupSelector: "#add-todo-popup", 
-  handleFormSubmit: () => {},
+  
+  handleFormSubmit: (evt) => {
+    addTodoForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  const name = evt.target.name.value;
+  const dateInput = evt.target.date.value; 
+  const date = new Date(dateInput);
+  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+
+  const id = uuidv4();
+  const values = { name, date, id };
+  const todo = generateTodo(values);
+  todosList.append(todo);
+  addTodoPopup.close();
+});
+  },
 });
 
 function openModal(addTodoPopup) {
@@ -65,21 +80,7 @@ addTodoCloseBtn.addEventListener("click", () => {
   addTodoPopup.close();
 });
 
-addTodoForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  const name = evt.target.name.value;
-  const dateInput = evt.target.date.value; 
 
-  // Create a date object and adjust for timezone
-  const date = new Date(dateInput);
-  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-
-  const id = uuidv4();
-  const values = { name, date, id };
-  const todo = generateTodo(values);
-  todosList.append(todo);
-  addTodoPopup.close();
-});
 
 initialTodos.forEach((item) => {
   const todo = generateTodo(item);
