@@ -16,6 +16,28 @@ const addTodoPopup = new PopupWithForm({
   handleFormSubmit: () => {},
 });
 
+function openModal(addTodoPopup) {
+   addTodoPopupEl.classList.add("add-todo-popup");
+   document.addEventListener("click", function (evt) {
+    if (evt.target === addTodoForm) {
+      close(addTodoPopup);
+    };
+   });
+   document.addEventListener("keydown", function (evt) {
+    if (evt.key === `Escape`) {
+      closeModal();
+    };
+   });
+  };
+
+ function closeModal(addTodoPopup) {
+  addTodoPopupEl.classList.remove("add-todo-popup");
+  document.removeEventListener("keydown", function (evt) {
+  });
+  document.removeEventListener("click", function (evt) {
+  });
+ };
+
 addTodoPopup.setEventListeners()
 
 const section = new Section({
@@ -26,6 +48,7 @@ const section = new Section({
   },
     containerSelector: ".todos__list"
 });
+
 
 // The logic in this function should all be handled in the Todo class.
 const generateTodo = (data) => {
