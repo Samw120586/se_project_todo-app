@@ -38,7 +38,7 @@ function openModal(addTodoPopup) {
   });
  };
 
-addTodoPopup.setEventListeners()
+addTodoPopup.setEventListeners();
 
 const section = new Section({
   items: [initialTodos],
