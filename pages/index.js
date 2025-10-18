@@ -4,9 +4,7 @@ import Todo from "../components/Todo.js";
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
-import TodoCounter from '../components/TodoCounter.js';
 
-const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopupEl = document.querySelector("#add-todo-popup");
 const addTodoForm = addTodoPopupEl.querySelector(".popup__form");
@@ -39,10 +37,30 @@ function handleCheck(completed) {
 function handleDelete(completed) {
   if (completed) {
     todoCounter.updateCompleted(false);
-    todoCounter.updateTotal(false);
   }
 };
 
+function openModal(addTodoPopup) {
+   addTodoPopupEl.classList.add("add-todo-popup");
+   document.addEventListener("click", function (evt) {
+    if (evt.target === addTodoForm) {
+      closeModal();
+    };
+   });
+   document.addEventListener("keydown", function (evt) {
+    if (evt.key === `Escape`) {
+      closeModal();
+    };
+   });
+  };
+
+ function closeModal(addTodoPopup) {
+  addTodoPopupEl.classList.remove("add-todo-popup");
+  document.removeEventListener("keydown", function (evt) {
+  });
+  document.removeEventListener("click", function (evt) {
+  });
+ };
 
 addTodoPopup.setEventListeners();
 
@@ -60,7 +78,7 @@ section.renderItems();
 
 // The logic in this function should all be handled in the Todo class.
 const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template", handleCheck, handleDelete);
+  const todo = new Todo(data, "#todo-template");
   const todoElement = todo.getView();
   return todoElement;
 };
