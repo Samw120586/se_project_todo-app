@@ -17,7 +17,6 @@ const addTodoPopup = new PopupWithForm({
   popupSelector: "#add-todo-popup", 
   
   handleFormSubmit: (evt) => {
-    addTodoForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   const name = evt.target.name.value;
   const dateInput = evt.target.date.value; 
@@ -27,10 +26,10 @@ const addTodoPopup = new PopupWithForm({
   const id = uuidv4();
   const values = { name, date, id };
   const todo = generateTodo(values);
-  todosList.append(todo);
+  section.addItem(todo);
+  todoCounter.updateTotal(true);
   addTodoPopup.close();
-});
-  },
+  }
 });
 
 function handleCheck(completed) {
@@ -40,41 +39,23 @@ function handleCheck(completed) {
 function handleDelete(completed) {
   if (completed) {
     todoCounter.updateCompleted(false);
+    todoCounter.updateTotal(false);
   }
 };
 
-function openModal(addTodoPopup) {
-   addTodoPopupEl.classList.add("add-todo-popup");
-   document.addEventListener("click", function (evt) {
-    if (evt.target === addTodoForm) {
-      closeModal();
-    };
-   });
-   document.addEventListener("keydown", function (evt) {
-    if (evt.key === `Escape`) {
-      closeModal();
-    };
-   });
-  };
-
- function closeModal(addTodoPopup) {
-  addTodoPopupEl.classList.remove("add-todo-popup");
-  document.removeEventListener("keydown", function (evt) {
-  });
-  document.removeEventListener("click", function (evt) {
-  });
- };
 
 addTodoPopup.setEventListeners();
 
 const section = new Section({
-  items: [initialTodos],
-  renderer: () => {
-    generateTodo(item);
-    todosList.append(todo);
+  items: initialTodos,
+  renderer: (item) => {
+    const todoElement = generateTodo(item);
+    section.addItem(todoElement);
   },
     containerSelector: ".todos__list"
 });
+
+section.renderItems();
 
 
 // The logic in this function should all be handled in the Todo class.

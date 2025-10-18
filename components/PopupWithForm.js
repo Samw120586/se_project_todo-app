@@ -12,7 +12,6 @@ class PopupWithForm extends Popup {
         const formValues = {};
         this._inputList.forEach((input) => {
             formValues[input.name] = input.value;
-            formValues[input.date] = input.value;
         })
         return formValues;
     }
@@ -22,7 +21,7 @@ class PopupWithForm extends Popup {
         this._popupForm.addEventListener("submit", (evt) => {
             evt.preventDefault();
             const inputValues = this._getInputValues();
-           this._handleFormSubmit(evt);
+           this._handleFormSubmit(inputValues);
 
         });
     }
