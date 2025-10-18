@@ -9,12 +9,12 @@ class PopupWithForm extends Popup {
     }
 
     _getInputValues() {
-        
-        const values = {};
+        const formValues = {};
         this._inputList.forEach((input) => {
-    
+            formValues[input.name] = input.value;
+            formValues[input.date] = input.value;
         })
-        return values;
+        return formValues;
     }
 
     setEventListeners() {
