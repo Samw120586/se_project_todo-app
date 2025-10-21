@@ -1,14 +1,14 @@
 # Simple Todo App
-
-Give a brief description of the project here. Feel free to give it a different name.
-
+ 
+This is a simple to do app where you can list tasks for you to complete and also select a date to which they should be completed by.
+ 
 ## Functionality
-
-Give a more detailed explanation of the project and its functionality.
-
+ 
+This app lets you list tasks that need to be completed and input the date to which they need to be completed by, it also allows you to check mark the task when you complete them and delete them off of your list.
+ 
 ## Technology
-
-Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
+ 
+Some of the tech i used in this project was Javascript, form validation, and copying over functions and methods to share between different files and folders.
 
 ## Deployment
 
