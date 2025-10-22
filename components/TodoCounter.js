@@ -1,6 +1,4 @@
 class TodoCounter {
-  // todos should be the array of initial todos
-  // selector is the selector for the counter text element
   constructor(todos, selector) {
     this._element = document.querySelector(selector);
     this._completed = todos.filter((todo) => todo.completed).length;
@@ -8,9 +6,7 @@ class TodoCounter {
     this._updateText();
   }
   
-  // Call this when a checkbox is clicked, and when a completed
-  // to-do is deleted.
-    updateCompleted = (increment) => {
+  updateCompleted = (increment) => {
      this._completed += increment ? 1 : -1;
      this._updateText();
     };
