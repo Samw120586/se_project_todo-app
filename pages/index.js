@@ -48,14 +48,13 @@ const renderTodo = (item) => {
  
 addTodoPopup.setEventListeners();
  
-const section = new Section({items: initialTodos, renderer: () => {
-    generateTodo(item);
-    section.addItem(todo);
+const section = new Section({items: initialTodos, renderer: (items) => {
+    renderTodo(items);
   },
     containerSelector: ".todos__list"
 });
 
-renderer: renderTodo
+
  
 const generateTodo = (data) => {
   const todo = new Todo(data, "#todo-template", handleCheck, handleDelete);
@@ -69,8 +68,7 @@ addTodoButton.addEventListener("click", () => {
  
  
 section.renderItems();
-  const todo = generateTodo(item);
-  todosList.append(todo);
+  renderTodo(items);
 
  
  
