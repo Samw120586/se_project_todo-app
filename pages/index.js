@@ -16,22 +16,19 @@ const todosList = document.querySelector(".todos__list");
 const addTodoPopup = new PopupWithForm({ 
   popupSelector: "#add-todo-popup", 
   
-  handleFormSubmit: (evt) => {
-    addTodoForm.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-  const name = evt.target.name.value;
-  const dateInput = evt.target.date.value; 
+  handleFormSubmit: (inputValues) => {
+   const name = inputValues.name;
+   const dateInput = inputValues.date; 
   const date = new Date(dateInput);
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
  
   const id = uuidv4();
   const values = { name, date, id };
-  const todo = generateTodo(values);
-  todosList.append(todo);
+  renderTodo(values);
   addTodoPopup.close();
+  }
 });
-  },
-});
+
  
 function handleCheck(completed) {
   todoCounter.updateCompleted(completed);
@@ -41,41 +38,25 @@ function handleDelete(completed) {
   if (completed) {
     todoCounter.updateCompleted(false);
     }
+    todoCounter.updateTotal(false);
 };
  
-function openModal(addTodoPopup) {
-  addTodoPopupEl.classList.add("add-todo-popup");
-   document.addEventListener("click", function (evt) {
-    if (evt.target === addTodoForm) {
-      closeModal();
-    };
-   });
-   document.addEventListener("keydown", function (evt) {
-    if (evt.key === `Escape`) {
-      closeModal();
-    };
-   });
-  };
- 
- function closeModal(addTodoPopup) {
-  addTodoPopupEl.classList.remove("add-todo-popup");
-  document.removeEventListener("keydown", function (evt) {
-  });
-  document.removeEventListener("click", function (evt) {
-  });
- };
+const renderTodo = (item) => {
+  const todo = generateTodo(item);
+  section.addItem(todo);
+};
  
 addTodoPopup.setEventListeners();
  
-const section = new Section({items: [initialTodos],renderer: () => {
+const section = new Section({items: initialTodos, renderer: () => {
     generateTodo(item);
-    todosList.append(todo);
+    section.addItem(todo);
   },
     containerSelector: ".todos__list"
 });
+
+renderer: renderTodo
  
- 
-// The logic in this function should all be handled in the Todo class.
 const generateTodo = (data) => {
   const todo = new Todo(data, "#todo-template", handleCheck, handleDelete);
   const todoElement = todo.getView();
@@ -86,16 +67,11 @@ addTodoButton.addEventListener("click", () => {
   addTodoPopup.open();
 });
  
-addTodoCloseBtn.addEventListener("click", () => {
-  addTodoPopup.close();
-});
  
- 
- 
-initialTodos.forEach((item) => {
+section.renderItems();
   const todo = generateTodo(item);
   todosList.append(todo);
-});
+
  
  
  
