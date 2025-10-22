@@ -22,7 +22,7 @@ const section = new Section({
   itmes: [initialTodos], 
   renderer: () => {
     generateTodo(item);
-    addItem();
+    addItem(todosList);
   }, 
   containerSelector: ".todos__list",
 });
@@ -52,15 +52,14 @@ addTodoForm.addEventListener("submit", (evt) => {
   const name = evt.target.name.value;
   const dateInput = evt.target.date.value; 
  
-  // Create a date object and adjust for timezone
   const date = new Date(dateInput);
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
  
   const id = uuidv4();
   const values = { name, date, id };
   const todo = generateTodo(values);
-  addItem();
-  addTodoFormValidator.resetValidation();
+  section.addItem();
+  addTodoFormValidator.enableValidation();
   addTodoPopup.close();
 });
  
