@@ -32,4 +32,4 @@ class Popup {
     }
     
 } 
-export default Popup;uue
+export default Popup;
