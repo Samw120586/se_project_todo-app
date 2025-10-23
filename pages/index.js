@@ -21,6 +21,7 @@ const addTodoPopup = new PopupWithForm({
    const dateInput = inputValues.date; 
   const date = new Date(dateInput);
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+  todoCounter.updateTotal(true);
  
   const id = uuidv4();
   const values = { name, date, id };
@@ -68,7 +69,6 @@ addTodoButton.addEventListener("click", () => {
  
  
 section.renderItems();
-  renderTodo(items);
 
  
  

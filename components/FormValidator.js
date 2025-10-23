@@ -8,6 +8,11 @@ class FormValidator {
     this._inactiveButtonClass = settings.inactiveButtonClass;
     this._formEl = formEl;
     }
+
+    resetValidation() {
+    this._toggleButtonState();
+    this_formEl.reset();
+    }
  
     _showInputError(inputElement, errorMessage) {
      const errorElementId = `#${inputElement.id}-error`;
@@ -67,6 +72,7 @@ class FormValidator {
     enableValidation() {
     this._formEl.addEventListener("submit", (evt) => {
     evt.preventDefault();
+    this.resetValidation();
   });
   this._setEventListeners();
     }
