@@ -10,8 +10,9 @@ class FormValidator {
     }
 
     resetValidation() {
-    this._toggleButtonState();
     this._formEl.reset();
+    this._toggleButtonState();
+    
     }
  
     _showInputError(inputElement, errorMessage) {
